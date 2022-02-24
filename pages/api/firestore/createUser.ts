@@ -11,9 +11,11 @@ export default async (req: any, res: { statusCode: number }) => {
   }
 
   const db = getFirestore();
-  // 全件取得
-  const querySnapshot = await db.collection('users').get();
-  const records = querySnapshot.docs.map((elem: { data: () => object }) => elem.data());
+  const docRef = db.collection('users').doc('test2');
 
-  console.log(111, records);
+  await docRef.set({
+    first: 'Ada',
+    last: 'Lovelace',
+    born: 1815,
+  });
 };
